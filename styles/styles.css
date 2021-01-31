@@ -22,3 +22,16 @@
     max-width: 300px;
     padding: 20px;
     background-color: #fff;
+}
+
+#addBtn{
+    font-size:xx-large;
+    background-color:cornflowerblue;
+    width:30%;
+    text-align:center;
+    border:solid black;
+}
+
+th{
+    border:solid black;
+}
