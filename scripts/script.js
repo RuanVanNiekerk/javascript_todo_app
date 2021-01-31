@@ -15,7 +15,7 @@ class formEntry {
         this.task_date = taskDate;
     }
 }
-
+//array of all entries
 const objList = []
 
 //creates new entry by saving as object and refreshing the todo list
@@ -66,8 +66,8 @@ function deleteEntry(e) {
     console.log(e);
     let idD = e.parentNode.parentNode.getAttribute("id");
     console.log(idD);
-    document.getElementById("todoList").deleteRow(idD);
-    objList.splice(idD-1, 1);
+    document.getElementById(idD).remove();
+    objList.splice(idD, 1);
 }
 
 //function to strike entry
