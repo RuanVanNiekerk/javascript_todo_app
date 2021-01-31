@@ -1,0 +1,24 @@
+﻿body
+{
+
+}
+
+.loginPopup {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.formPopup {
+    display: none;
+    position: fixed;
+    left: 45%;
+    top: 5%;
+    transform: translate(-50%, 5%);
+    border: 3px solid #999999;
+    z-index: 9;
+}
+
+.formContainer {
+    max-width: 300px;
+    padding: 20px;
+    background-color: #fff;

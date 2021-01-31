@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link type="text/css" rel="stylesheet" href="styles/styles.css" />
+    <title></title>
+</head>
+<body>
+    <!--Button that shows task create form-->
+    <div id="addBtn">+</div>
+
+    <!--Create task form-->
+    <div class="loginPopup">
+        <div class="formPopup" id="popupForm">
+            <form class="formContainer" onsubmit="saveObj()">
+                <h2>Add New Task</h2>
+                <label for="taskName">
+                    <strong>Task Name</strong>
+                </label>
+                <input type="text" id="taskName" required><br />
+                <label for="taskDesc">
+                    <strong>Task Description</strong>
+                </label>
+                <textarea id="taskDesc" placeholder="Your Password"></textarea><br />
+                <label for="taskDate">
+                    <strong>Due Date</strong>
+                </label>
+                <input type="date" id="taskDate" required><br />
+                <button type="submit" class="btn" >Create</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <!--todo list-->
+    <div>
+        <h1>To-Do List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Completed</th>
+                    <th>Due date</th>
+                    <th>Name</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody id="todoList">
+                
+                <tr class="entry">
+                    <td class="entry-complete"></td>
+                    <td class="entry-due"></td>
+                    <td class="entry-title"></td>
+                    <td class="entry-options"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--Scripts-->
+    <script src="scripts/script.js"></script>
+</body>
+</html>
