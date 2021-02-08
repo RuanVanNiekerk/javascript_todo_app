@@ -16,11 +16,18 @@ class formEntry {
     }
 }
 //array of all entries
-const objList = []
+let objList = JSON.parse(localStorage.getItem("Data"));
+let localList = JSON.stringify(objList);
+localStorage.setItem("Data", localList);
+objList = JSON.parse(localStorage.getItem("Data"));
 
 //creates new entry by saving as object and refreshing the todo list
 function saveObj() {
     event.preventDefault();
+
+    localList = JSON.stringify(objList);
+    localStorage.setItem("Data", localList);
+    objList = JSON.parse(localStorage.getItem("Data"));
 
     let taskName = document.getElementById("taskName").value;
     let taskDesc = document.getElementById("taskDesc").value;
@@ -68,6 +75,10 @@ function deleteEntry(e) {
     console.log(idD);
     document.getElementById(idD).remove();
     objList.splice(idD, 1);
+
+    localList = JSON.stringify(objList);
+    localStorage.setItem("Data", localList);
+    objList = JSON.parse(localStorage.getItem("Data"));
 }
 
 //function to strike entry
