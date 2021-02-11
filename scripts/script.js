@@ -147,16 +147,16 @@ class formEntry {
 
 let objList = JSON.parse(localStorage.getItem("Data"));
 
+if (objList == undefined || objList == null) {
+    objList = [];
+};
+
 //removes any null values from array and local storage on page load
 for (let i = 0; i < objList.length; i++) {
     if (objList[i] == null) {
         objList.splice(i, 1);
         i--
     };
-};
-
-if (objList == undefined || objList == null) {
-    objList = [];
 };
 
 let data = JSON.stringify(objList);
