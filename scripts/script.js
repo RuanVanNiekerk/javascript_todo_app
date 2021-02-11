@@ -1,44 +1,3 @@
-/*// JavaScript source code
-document.getElementById("addBtn").addEventListener("click", openForm);
-
-function openForm() {
-    document.getElementById("popupForm").style.display = "block";
-}
-function closeForm() {
-    document.getElementById("popupForm").style.display = "none";
-}
-
-class formEntry {
-    constructor(taskName, taskDesc, taskDate) {
-        this.task_name = taskName;
-        this.task_desc = taskDesc;
-        this.task_date = taskDate;
-    }
-
-    static addObj() {
-        let taskName = document.getElementById("taskName").value;
-        let taskDesc = document.getElementById("taskDesc").value;
-        let taskDate = document.getElementById("taskDate").value;
-
-        let obj = new formEntry(taskName, taskDesc, taskDate);
-
-        objList.push(obj);
-        let table = document.getElementById("todoList");
-        table.innerHTML = "";
-    }
-}
-
-let objList;
-let localList;
-//makes sure Data is not null
-if (localStorage.getItem("Data") == undefined) {
-    objList = [];
-
-    localList = JSON.stringify(objList);
-    localStorage.setItem("Data", localList);
-    objList = JSON.parse(localStorage.getItem("Data"));
-};
-}*/
 //JavaScript source code
 document.getElementById("addBtn").addEventListener("click", openForm);
 
@@ -142,6 +101,56 @@ class formEntry {
             document.getElementById(idT).cells[2].innerHTML = cellTick2.slice(3, cellTick1.length - 4);
             document.getElementById(idT).cells[3].innerHTML = cellTick3.slice(3, cellTick1.length - 4);
         }
+    };
+
+    static ascending(objList, data, table) {
+        console.log(objList);
+        objList.sort((a, b) => {
+            let fa = a.task_name.toLowerCase(),
+                fb = b.task_name.toLowerCase();
+
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        });
+        data = JSON.stringify(objList);
+        localStorage.setItem("Data", data);
+        objList = JSON.parse(localStorage.getItem("Data"));
+
+        table = document.getElementById("todoList");
+        table.innerHTML = "";
+
+        this.fillTable(objList, table);
+
+    };
+
+    static desending(objList, data, table) {
+        console.log(objList);
+        objList.sort((a, b) => {
+            let fa = a.task_name.toLowerCase(),
+                fb = b.task_name.toLowerCase();
+
+            if (fa < fb) {
+                return 1;
+            }
+            if (fa > fb) {
+                return -1;
+            }
+            return 0;
+        });
+        data = JSON.stringify(objList);
+        localStorage.setItem("Data", data);
+        objList = JSON.parse(localStorage.getItem("Data"));
+
+        table = document.getElementById("todoList");
+        table.innerHTML = "";
+
+        this.fillTable(objList, table);
+
     };
 };
 
