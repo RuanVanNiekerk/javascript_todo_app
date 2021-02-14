@@ -120,6 +120,8 @@ class formEntry {
         document.getElementById("create").style.display = "initial";
 
         this.fillTable();
+
+        document.getElementById("popupForm").style.display = "none";
     };
 
     //Method that trikes out content of row
@@ -227,4 +229,6 @@ function saveObj() {
     let obj = new formEntry(taskName, taskDesc, taskDate);
 
     formEntry.addObj(obj, objList, data);
+
+    document.getElementById("popupForm").style.display = "none";
 }
