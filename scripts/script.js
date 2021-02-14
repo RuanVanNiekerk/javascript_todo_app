@@ -1,4 +1,6 @@
 //JavaScript source code
+let currentEntry;
+
 document.getElementById("addBtn").addEventListener("click", openForm);
 
 function openForm() {
@@ -40,8 +42,9 @@ class formEntry {
     };
 
     //method that fills in table on html
-    static fillTable(objList, table) {
-        
+    static fillTable() {
+        table.innerHTML = "";
+
         for (let i = 0; i < objList.length; i++) {
 
             let row = table.insertRow(0);
@@ -57,6 +60,11 @@ class formEntry {
             tick.setAttribute("type", "checkbox");
             tick.setAttribute("onchange", "formEntry.strikeTick(this)");
 
+            //create Edit Button
+            let editBtn = document.createElement("button");
+            editBtn.innerHTML = "Edit";
+            editBtn.setAttribute("onclick", "formEntry.editEntry(this)");
+
             //create delete Button
             let deleteBtn = document.createElement("button");
             deleteBtn.innerHTML = "Delete";
@@ -67,9 +75,25 @@ class formEntry {
             cell2.innerHTML = objList[i].task_date;
             cell3.innerHTML = objList[i].task_name;
             cell4.innerHTML = objList[i].task_desc;
+            cell5.appendChild(editBtn)
             cell5.appendChild(deleteBtn)
         };
     };
+
+    //method to edit entry
+    static editEntry(e) {
+        let idE = e.parentNode.parentNode.getAttribute("id");
+
+        document.getElementById("popupForm").style.display = "block";
+        document.getElementById("edit").style.display = "initial";
+        document.getElementById("create").style.display = "none";
+
+        document.getElementById("taskName").value = objList[idE].task_name;
+        document.getElementById("taskDesc").value = objList[idE].task_desc;
+        document.getElementById("taskDate").value = objList[idE].task_date;
+
+        currentEntry = idE;
+    }
 
     //method that deletes row and object in array
     static deleteEntry(e) {
@@ -82,6 +106,20 @@ class formEntry {
 
         data = JSON.stringify(objList);
         localStorage.setItem("Data", data);
+    };
+
+    static replaceEntry() {
+        objList[currentEntry].task_name = document.getElementById("taskName").value;
+        objList[currentEntry].task_desc = document.getElementById("taskDesc").value;
+        objList[currentEntry].task_date = document.getElementById("taskDate").value;
+
+        data = JSON.stringify(objList);
+        localStorage.setItem("Data", data);
+
+        document.getElementById("edit").style.display = "none";
+        document.getElementById("create").style.display = "initial";
+
+        this.fillTable();
     };
 
     //Method that trikes out content of row
@@ -103,6 +141,7 @@ class formEntry {
         }
     };
 
+    //Method that sorts list in ascending order
     static ascending(objList, data, table) {
         console.log(objList);
         objList.sort((a, b) => {
@@ -128,7 +167,8 @@ class formEntry {
 
     };
 
-    static desending(objList, data, table) {
+    //Method that sorts list in descending order
+    static descending(objList, data, table) {
         console.log(objList);
         objList.sort((a, b) => {
             let fa = a.task_name.toLowerCase(),
@@ -174,7 +214,7 @@ localStorage.setItem("Data", data);
 let table = document.getElementById("todoList");
 table.innerHTML = "";
 
-formEntry.fillTable(objList, table);
+formEntry.fillTable();
 
 //function that creates object and calls addObj method 
 function saveObj() {

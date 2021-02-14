@@ -18,6 +18,10 @@
     z-index: 9;
 }
 
+#edit{
+    display:none;
+}
+
 .formContainer {
     max-width: 300px;
     padding: 20px;

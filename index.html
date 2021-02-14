@@ -27,7 +27,8 @@
                     <strong>Due Date</strong>
                 </label>
                 <input type="date" id="taskDate" required><br />
-                <button type="submit" class="btn" >Create</button>
+                <button type="button" class="btn" id="edit" onclick="formEntry.replaceEntry()">Edit</button>
+                <button type="submit" class="btn" id="create">Create</button>
                 <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
             </form>
         </div>
@@ -38,7 +39,7 @@
         <h1>To-Do List</h1>
 
         <button id="sortUp" onclick="formEntry.ascending(objList, data, table)">Ascending</button>
-        <button id="sortDown" onclick="formEntry.desending(objList, data, table)">Decending</button>
+        <button id="sortDown" onclick="formEntry.descending(objList, data, table)">Descending</button>
 
         <table id="table">
             <thead>
