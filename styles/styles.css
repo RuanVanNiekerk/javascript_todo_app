@@ -1,6 +1,16 @@
 ﻿body
 {
+    width: 80%;
+    padding:2%;
+    margin-right:auto;
+    margin-left:auto;
+    text-align:center;
 
+}
+
+#table, #addBtn {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .loginPopup {
@@ -11,7 +21,7 @@
 .formPopup {
     display: none;
     position: fixed;
-    left: 45%;
+    left: 50%;
     top: 5%;
     transform: translate(-50%, 5%);
     border: 3px solid #999999;
@@ -38,4 +48,15 @@
 
 th{
     border:solid black;
+}
+
+@media only screen and (max-width:990px) {
+    body {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #addBtn{
+        width:50%;
+    }
 }
