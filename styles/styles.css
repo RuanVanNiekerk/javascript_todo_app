@@ -1,12 +1,28 @@
-﻿body
-{
+﻿body {
     width: 80%;
-    padding:2%;
-    margin-right:auto;
-    margin-left:auto;
-    text-align:center;
-
+    height: 100vh;
+    padding: 2%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    color: #03071E;
+    background-image: linear-gradient(#FAA307, #DC2F02);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+
+button {
+    background-color: #FFBA08;
+    border: solid #5C0029;
+    padding: 5px;
+    margin:5px;
+    border-radius:10px;
+}
+
+    button:hover {
+        background-color: #370617;
+        color:white;
+    }
 
 #table, #addBtn {
     margin-right: auto;
@@ -24,8 +40,9 @@
     left: 50%;
     top: 5%;
     transform: translate(-50%, 5%);
-    border: 3px solid #999999;
+    border: 3px solid #5C0029;
     z-index: 9;
+    border-radius: 10px;
 }
 
 #edit{
@@ -35,19 +52,33 @@
 .formContainer {
     max-width: 300px;
     padding: 20px;
-    background-color: #fff;
+    background-color: #F48C06
 }
 
-#addBtn{
-    font-size:xx-large;
-    background-color:cornflowerblue;
-    width:30%;
-    text-align:center;
-    border:solid black;
+input, textarea {
+    background-color: #FFBA08;
+    margin-top:5px;
 }
 
-th{
-    border:solid black;
+#addBtn {
+    font-size: xx-large;
+    background-color: #FFBA08;
+    width: 30%;
+    text-align: center;
+    border: solid #5C0029;
+    border-radius: 10px;
+}
+
+    #addBtn:hover {
+        background-color: #370617;
+        color: white;
+    }
+
+table {
+    background-color: #F48C06;
+    border: solid #5C0029;
+    margin: 10px;
+    border-radius: 10px;
 }
 
 @media only screen and (max-width:990px) {

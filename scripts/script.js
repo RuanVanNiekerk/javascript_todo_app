@@ -1,21 +1,20 @@
 //JavaScript source code
 let currentEntry;
 
-document.getElementById("addBtn").addEventListener("click", openForm);
-
-function openForm() {
-    document.getElementById("popupForm").style.display = "block";
-}
-function closeForm() {
-    document.getElementById("popupForm").style.display = "none";
-}
-
 class formEntry {
     constructor(_taskName, _taskDesc, _taskDate) {
         this.task_name = _taskName;
         this.task_desc = _taskDesc;
         this.task_date = _taskDate;
     };
+
+    //methods that open and close add task form
+    static openForm() {
+        document.getElementById("popupForm").style.display = "block";
+    }
+    static closeForm() {
+        document.getElementById("popupForm").style.display = "none";
+    }
 
     //method that adds obj to array
     static addObj(obj, objList, data) {
@@ -58,17 +57,17 @@ class formEntry {
             //create completed tickbox
             let tick = document.createElement("input");
             tick.setAttribute("type", "checkbox");
-            tick.setAttribute("onchange", "formEntry.strikeTick(this)");
+            tick.setAttribute("onchange", "editEntry.strikeTick(this)");
 
             //create Edit Button
             let editBtn = document.createElement("button");
             editBtn.innerHTML = "Edit";
-            editBtn.setAttribute("onclick", "formEntry.editEntry(this)");
+            editBtn.setAttribute("onclick", "editEntry.editEntry(this)");
 
             //create delete Button
             let deleteBtn = document.createElement("button");
             deleteBtn.innerHTML = "Delete";
-            deleteBtn.setAttribute("onclick", "formEntry.deleteEntry(this)");
+            deleteBtn.setAttribute("onclick", "editEntry.deleteEntry(this)");
 
             //add content to page
             cell1.appendChild(tick);
@@ -94,55 +93,6 @@ class formEntry {
 
         currentEntry = idE;
     }
-
-    //method that deletes row and object in array
-    static deleteEntry(e) {
-        let idD = e.parentNode.parentNode.getAttribute("id");
-        console.log(idD);
-        document.getElementById(idD).remove();
-        delete objList[idD];
-
-        console.log(objList);
-
-        data = JSON.stringify(objList);
-        localStorage.setItem("Data", data);
-    };
-
-    static replaceEntry() {
-        objList[currentEntry].task_name = document.getElementById("taskName").value;
-        objList[currentEntry].task_desc = document.getElementById("taskDesc").value;
-        objList[currentEntry].task_date = document.getElementById("taskDate").value;
-
-        data = JSON.stringify(objList);
-        localStorage.setItem("Data", data);
-
-        document.getElementById("edit").style.display = "none";
-        document.getElementById("create").style.display = "initial";
-
-        this.fillTable();
-
-        document.getElementById("popupForm").style.display = "none";
-    };
-
-    //Method that trikes out content of row
-    static strikeTick(e) {
-        console.log(e);
-        let idT = e.parentNode.parentNode.getAttribute("id");
-        console.log(idT);
-        let cellTick1 = document.getElementById(idT).cells[1].innerHTML;
-        let cellTick2 = document.getElementById(idT).cells[2].innerHTML;
-        let cellTick3 = document.getElementById(idT).cells[3].innerHTML;
-        if (e.checked == 1) {
-            document.getElementById(idT).cells[1].innerHTML = "<s>" + cellTick1 + "</s>";
-            document.getElementById(idT).cells[2].innerHTML = "<s>" + cellTick2 + "</s>";
-            document.getElementById(idT).cells[3].innerHTML = "<s>" + cellTick3 + "</s>";
-        } else {
-            document.getElementById(idT).cells[1].innerHTML = cellTick1.slice(3, cellTick1.length - 4);
-            document.getElementById(idT).cells[2].innerHTML = cellTick2.slice(3, cellTick1.length - 4);
-            document.getElementById(idT).cells[3].innerHTML = cellTick3.slice(3, cellTick1.length - 4);
-        }
-    };
-
     //Method that sorts list in ascending order
     static ascending(objList, data, table) {
         console.log(objList);
@@ -195,6 +145,67 @@ class formEntry {
 
     };
 };
+
+class editEntry extends formEntry {
+    constructor(editEntry, formEntry) {
+        this.task_name = _taskName;
+        this.task_desc = _taskDesc;
+        this.task_date = _taskDate;
+    }
+
+    //method that deletes row and object in array
+    static deleteEntry(e) {
+        let idD = e.parentNode.parentNode.getAttribute("id");
+        console.log(idD);
+        document.getElementById(idD).remove();
+        delete objList[idD];
+
+        console.log(objList);
+
+        data = JSON.stringify(objList);
+        localStorage.setItem("Data", data);
+    };
+
+    static replaceEntry() {
+        objList[currentEntry].task_name = document.getElementById("taskName").value;
+        objList[currentEntry].task_desc = document.getElementById("taskDesc").value;
+        objList[currentEntry].task_date = document.getElementById("taskDate").value;
+
+        data = JSON.stringify(objList);
+        localStorage.setItem("Data", data);
+
+        document.getElementById("edit").style.display = "none";
+        document.getElementById("create").style.display = "initial";
+
+        this.fillTable();
+
+        document.getElementById("popupForm").style.display = "none";
+    };
+
+    //Method that trikes out content of row
+    static strikeTick(e) {
+        console.log(e);
+        let idT = e.parentNode.parentNode.getAttribute("id");
+        console.log(idT);
+        let cellTick1 = document.getElementById(idT).cells[1].innerHTML;
+        let cellTick2 = document.getElementById(idT).cells[2].innerHTML;
+        let cellTick3 = document.getElementById(idT).cells[3].innerHTML;
+        if (e.checked == 1) {
+            document.getElementById(idT).cells[1].innerHTML = "<s>" + cellTick1 + "</s>";
+            document.getElementById(idT).cells[2].innerHTML = "<s>" + cellTick2 + "</s>";
+            document.getElementById(idT).cells[3].innerHTML = "<s>" + cellTick3 + "</s>";
+        } else {
+            document.getElementById(idT).cells[1].innerHTML = cellTick1.slice(3, cellTick1.length - 4);
+            document.getElementById(idT).cells[2].innerHTML = cellTick2.slice(3, cellTick1.length - 4);
+            document.getElementById(idT).cells[3].innerHTML = cellTick3.slice(3, cellTick1.length - 4);
+        }
+    };
+
+}
+
+//event listeners that call the open and close methods for the add task form
+document.getElementById("addBtn").addEventListener("click", formEntry.openForm);
+document.getElementById("close").addEventListener("click", formEntry.closeForm);
 
 let objList = JSON.parse(localStorage.getItem("Data"));
 
