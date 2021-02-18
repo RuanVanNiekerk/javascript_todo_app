@@ -7,9 +7,6 @@
     <title></title>
 </head>
 <body>
-    <!--Button that shows task create form-->
-    <div id="addBtn">+ ADD TASK</div>
-
     <!--Create task form-->
     <div class="loginPopup">
         <div class="formPopup" id="popupForm">
@@ -35,8 +32,12 @@
     </div>
 
     <!--todo list-->
-    <div>
-        <h1>To-Do List</h1>
+    <div id="mainContent">
+
+        <h1>TO-DO LIST</h1>
+        
+        <!--Button that shows task create form-->
+        <div id="addBtn">+ ADD TASK</div><br/>
 
         <button id="sortUp" onclick="formEntry.ascending(objList, data, table)">Ascending</button>
         <button id="sortDown" onclick="formEntry.descending(objList, data, table)">Descending</button>
@@ -52,8 +53,6 @@
                 </tr>
             </thead>
             <tbody id="todoList">
-                
-
             </tbody>
         </table>
     </div>

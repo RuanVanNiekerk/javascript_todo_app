@@ -1,11 +1,18 @@
 ﻿body {
-    width: 80%;
     height: 100vh;
-    padding: 2%;
+    color: #03071E;
+    background-color: #03071E; padding: 2%;
+    text-align: center;
+}
+
+#mainContent {
+    display: inline-block;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
-    color: #03071E;
+    padding: 2%;
+    border-radius: 25px;
+    height: 100vh;
     background-image: linear-gradient(#FAA307, #DC2F02);
     background-size: cover;
     background-repeat: no-repeat;
@@ -62,8 +69,9 @@ input, textarea {
 
 #addBtn {
     font-size: xx-large;
+    padding:inherit;
     background-color: #FFBA08;
-    width: 30%;
+    display:inline-block;
     text-align: center;
     border: solid #5C0029;
     border-radius: 10px;
@@ -84,7 +92,8 @@ table {
 @media only screen and (max-width:990px) {
     body {
         width: 90%;
-        padding: 20px;
+        padding:0%, 5%;
+        margin:0;
     }
 
     #addBtn{
