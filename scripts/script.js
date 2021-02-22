@@ -177,7 +177,7 @@ class editEntry extends formEntry {
         document.getElementById("edit").style.display = "none";
         document.getElementById("create").style.display = "initial";
 
-        this.fillTable();
+        formEntry.fillTable();
 
         document.getElementById("popupForm").style.display = "none";
     };
