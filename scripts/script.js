@@ -147,10 +147,8 @@ class formEntry {
 };
 
 class editEntry extends formEntry {
-    constructor(editEntry, formEntry) {
-        this.task_name = _taskName;
-        this.task_desc = _taskDesc;
-        this.task_date = _taskDate;
+    constructor(_taskName, _taskDesc, _taskDate) {
+        super(_taskName, _taskDesc, _taskDate);
     }
 
     //method that deletes row and object in array
